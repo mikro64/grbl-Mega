@@ -109,8 +109,8 @@
   // Advanced Configuration Below You should not need to touch these variables
   // Set Timer up to use TIMER4B which is attached to Digital Pin 7
   #ifdef ENABLE_SPINDLE_SERVO_SIGNAL
-    #define SPINDLE_PWM_MIN_VALUE     1000 // 1 ms
-    #define SPINDLE_PWM_MAX_VALUE     2000 // 2 ms
+    #define SPINDLE_PWM_MIN_VALUE     2000 // 1 ms
+    #define SPINDLE_PWM_MAX_VALUE     4000 // 2 ms
   #else
     #define SPINDLE_PWM_MAX_VALUE     1024.0 // Translates to about 1.9 kHz PWM frequency at 1/8 prescaler
   #endif
@@ -119,7 +119,7 @@
   #endif
 
   #ifdef ENABLE_SPINDLE_SERVO_SIGNAL
-    #define SPINDLE_PWM_OFF_VALUE     1000
+    #define SPINDLE_PWM_OFF_VALUE     2000
   #else
     #define SPINDLE_PWM_OFF_VALUE     0
   #endif
