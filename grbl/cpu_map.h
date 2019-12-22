@@ -108,7 +108,7 @@
 
   // Advanced Configuration Below You should not need to touch these variables
   // Set Timer up to use TIMER4B which is attached to Digital Pin 7
-  #ifdef ENABLE_SPINDLE_ESC
+  #ifdef ENABLE_ESC_SPINDLE
     #define SPINDLE_PWM_MIN_VALUE     2000 // 1 ms
     #define SPINDLE_PWM_MAX_VALUE     4000 // 2 ms
   #else
@@ -118,7 +118,7 @@
     #define SPINDLE_PWM_MIN_VALUE   1   // Must be greater than zero.
   #endif
 
-  #ifdef ENABLE_SPINDLE_ESC
+  #ifdef ENABLE_ESC_SPINDLE
     #define SPINDLE_PWM_OFF_VALUE     2000
   #else
     #define SPINDLE_PWM_OFF_VALUE     0
@@ -133,7 +133,7 @@
   #define SPINDLE_TCCRA_INIT_MASK ((1<<WGM40) | (1<<WGM41))
   #define SPINDLE_TCCRB_INIT_MASK ((1<<WGM42) | (1<<WGM43) | (1<<CS41)) 
   #define SPINDLE_OCRA_REGISTER   OCR4A // 16-bit Fast PWM mode requires top reset value stored here.
-  #ifdef ENABLE_SPINDLE_ESC
+  #ifdef ENABLE_ESC_SPINDLE
     #define SPINDLE_OCRA_TOP_VALUE  0x9C40 // PWM counter reset value for ESC. Should be the same as PWM_MAX_VALUE in hex.
   #else
     #define SPINDLE_OCRA_TOP_VALUE  0x0400 // PWM counter reset value. Should be the same as PWM_MAX_VALUE in hex.

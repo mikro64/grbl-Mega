@@ -59,7 +59,7 @@ uint8_t spindle_get_state()
 // Called by spindle_init(), spindle_set_speed(), spindle_set_state(), and mc_reset().
 void spindle_stop()
 {
-  #ifdef ENABLE_SPINDLE_ESC
+  #ifdef ENABLE_ESC_SPINDLE
     SPINDLE_OCR_REGISTER = SPINDLE_PWM_OFF_VALUE; // Set off value of PWM.
     SPINDLE_TCCRA_REGISTER |= (1 << SPINDLE_COMB_BIT); // Ensure PWM output is enabled.
   #else
@@ -89,7 +89,7 @@ void spindle_set_speed(uint16_t pwm_value)
         SPINDLE_ENABLE_PORT |= (1<<SPINDLE_ENABLE_BIT);
       #endif
     }
-  #elif defined(ENABLE_SPINDLE_ESC)
+  #elif defined(ENABLE_ESC_SPINDLE)
     SPINDLE_TCCRA_REGISTER |= (1 << SPINDLE_COMB_BIT); // Ensure PWM output is enabled.
   #else
     if (pwm_value == SPINDLE_PWM_OFF_VALUE) {

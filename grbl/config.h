@@ -212,7 +212,7 @@
 
 // Enable spindle control using servo signal. Timer generate 50 Hz PWM signal, positive pulse width 1ms
 // for stopped spindle and 2 ms for full speed of servo. It's suitable for ESC using.
-// #define ENABLE_SPINDLE_ESC // Default disabled. Uncomment to enable.
+// #define ENABLE_ESC_SPINDLE // Default disabled. Uncomment to enable.
 
 // Inverts the spindle enable pin from low-disabled/high-enabled to low-enabled/high-disabled. Useful
 // for some pre-built electronic boards.
