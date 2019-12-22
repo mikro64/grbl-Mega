@@ -210,6 +210,10 @@
   //#define INVERT_MAX_LIMIT_PIN_MASK ((1<<X_AXIS) | (1<<Y_AXIS) | (1<<Z_AXIS))  
 #endif
 
+// Enable spindle control using servo signal. Timer generate 50 Hz PWM signal, positive pulse width 1ms
+// for stopped spindle and 2 ms for full speed of servo. It's suitable for ESC using.
+#define ENABLE_SPINDLE_SERVO_SIGNAL
+
 // Inverts the spindle enable pin from low-disabled/high-enabled to low-enabled/high-disabled. Useful
 // for some pre-built electronic boards.
 // #define INVERT_SPINDLE_ENABLE_PIN // Default disabled. Uncomment to enable.

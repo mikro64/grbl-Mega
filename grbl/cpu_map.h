@@ -108,11 +108,21 @@
 
   // Advanced Configuration Below You should not need to touch these variables
   // Set Timer up to use TIMER4B which is attached to Digital Pin 7
-  #define SPINDLE_PWM_MAX_VALUE     1024.0 // Translates to about 1.9 kHz PWM frequency at 1/8 prescaler
+  #ifdef ENABLE_SPINDLE_SERVO_SIGNAL
+    #define SPINDLE_PWM_MIN_VALUE     1000 // 1 ms
+    #define SPINDLE_PWM_MAX_VALUE     2000 // 2 ms
+  #else
+    #define SPINDLE_PWM_MAX_VALUE     1024.0 // Translates to about 1.9 kHz PWM frequency at 1/8 prescaler
+  #endif
   #ifndef SPINDLE_PWM_MIN_VALUE
     #define SPINDLE_PWM_MIN_VALUE   1   // Must be greater than zero.
   #endif
-  #define SPINDLE_PWM_OFF_VALUE     0
+
+  #ifdef ENABLE_SPINDLE_SERVO_SIGNAL
+    #define SPINDLE_PWM_OFF_VALUE     1000
+  #else
+    #define SPINDLE_PWM_OFF_VALUE     0
+  #endif
   #define SPINDLE_PWM_RANGE         (SPINDLE_PWM_MAX_VALUE-SPINDLE_PWM_MIN_VALUE)
   #define SPINDLE_TCCRA_REGISTER		TCCR4A
   #define SPINDLE_TCCRB_REGISTER		TCCR4B
@@ -123,7 +133,11 @@
   #define SPINDLE_TCCRA_INIT_MASK ((1<<WGM40) | (1<<WGM41))
   #define SPINDLE_TCCRB_INIT_MASK ((1<<WGM42) | (1<<WGM43) | (1<<CS41)) 
   #define SPINDLE_OCRA_REGISTER   OCR4A // 16-bit Fast PWM mode requires top reset value stored here.
-  #define SPINDLE_OCRA_TOP_VALUE  0x0400 // PWM counter reset value. Should be the same as PWM_MAX_VALUE in hex.
+  #ifdef ENABLE_SPINDLE_SERVO_SIGNAL
+    #define SPINDLE_OCRA_TOP_VALUE  0x9C40 // PWM counter reset value for ESC. Should be the same as PWM_MAX_VALUE in hex.
+  #else
+    #define SPINDLE_OCRA_TOP_VALUE  0x0400 // PWM counter reset value. Should be the same as PWM_MAX_VALUE in hex.
+  #endif
 
   // Define spindle output pins.
   #define SPINDLE_PWM_DDR		DDRH
